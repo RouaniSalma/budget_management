@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saisir votre Salaire</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Couleur de fond douce */
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px; /* Augmentation de la taille du conteneur */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px; /* Largeur fixe pour le conteneur */
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #00796b; /* Couleur de bouton plus professionnelle */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Saisir votre Salaire</h1>
+        <form method="POST">
+            
+            <input type="number" id="salaire" name="salaire" required>
+            <button type="submit">Confirmer</button>
+        </form>
+    </div>
+</body>
+</html>

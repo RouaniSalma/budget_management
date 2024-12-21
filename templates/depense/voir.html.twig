@@ -1,0 +1,68 @@
+{# templates/depense/voir.html.twig #}
+<style>
+/* Style for the expense details page */
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00695c; /* Dark green color */
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00796b; /* Green color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #00796b;
+}
+</style>
+<h1>Détails de la Dépense</h1>
+
+<table>
+    <tr>
+        <th>Catégorie</th>
+        <td>{{ depense.categorie }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ depense.description }}</td>
+    </tr>
+    <tr>
+        <th>Montant</th>
+        <td>{{ depense.montant }}</td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td>{{ depense.dateDepense ? depense.dateDepense|date('d-m-Y') : '' }}</td>
+    </tr>
+</table>
+
+<a href="{{ path('depense_liste') }}">Retour à la liste des dépenses</a>

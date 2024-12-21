@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Dépenses</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Couleur de fond douce */
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%; /* Largeur fixe pour le conteneur */
+            max-width: 800px; /* Largeur maximale pour le conteneur */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #00796b; /* Couleur d'en-tête plus professionnelle */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #00796b;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .actions {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des Dépenses</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for depense in depenses %}
+                    <tr>
+                        <td>{{ depense.categorie }}</td>
+                        <td>{{ depense.description }}</td>
+                        <td class="actions">
+                            <a href="{{ path('depense_voir', {'id': depense.id}) }}">Voir plus</a>
+                            <a href="{{ path('depense_modifier', {'id': depense.id}) }}">Modifier</a>
+                            <a href="{{ path('depense_supprimer', {'id': depense.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette dépense ?')">Supprimer</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucune dépense enregistrée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('depense_saisie') }}">Ajouter une dépense</a>
+        <a href="{{ path('depense_recapitulatif') }}">Voir le récapitulatif</a>
+    </div>
+</body>
+</html>

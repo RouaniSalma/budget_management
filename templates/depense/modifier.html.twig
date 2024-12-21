@@ -1,0 +1,88 @@
+{# templates/depense/modifier.html.twig #}
+<style>
+/* Style for the expense modification page */
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #00695c; /* Dark green color */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #00796b; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00796b;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00796b; /* Green color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #00796b;
+}
+</style>
+<h1>Modifier la Dépense</h1>
+
+<form method="POST">
+    <label for="categorie">Catégorie :</label>
+    <input type="text" id="categorie" name="categorie" value="{{ depense.categorie }}" required>
+
+    <label for="description">Description :</label>
+    <input type="text" id="description" name="description" value="{{ depense.description }}" required>
+
+    <label for="montant">Montant :</label>
+    <input type="number" id="montant" name="montant" value="{{ depense.montant }}" required>
+
+    
+
+    <label for="date_depense">Date de Dépense :</label>
+    <input type="date" id="date_depense" name="date_depense" value="{{ depense.dateDepense ? depense.dateDepense|date('Y-m-d') : '' }}" required>
+
+    <button type="submit">Modifier Dépense</button>
+</form>
+
+<a href="{{ path('depense_liste') }}">Retour à la liste des dépenses</a>

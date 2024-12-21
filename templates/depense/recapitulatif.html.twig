@@ -1,0 +1,98 @@
+<style>
+/* Style for the expense summary page */
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #00695c; /* Dark green color */
+}
+
+div {
+    margin: 20px 0;
+}
+
+div > div {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+}
+
+div > div > div {
+    height: 20px;
+    background-color: rgb(33, 18, 101); /* Purple color */
+    border-radius: 5px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00695c; /* Dark green color */
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+</style>
+<h1>Récapitulatif des Dépenses</h1>
+
+<p><strong>Salaire :</strong> {{ salaire }} MAD</p>
+<p><strong>Total des Dépenses :</strong> {{ totalDepenses }} MAD</p>
+<p><strong>Budget Restant :</strong> {{ budgetRestant }} MAD</p>
+
+<!-- Barre de progression du pourcentage des dépenses -->
+<div>
+    <p><strong>Pourcentage des Dépenses :</strong> {{ pourcentageDepenses | number_format(2) }}%</p>
+    <div style="width: 100%; background-color: #f3f3f3; border-radius: 5px;">
+        <div style="width: {{ pourcentageDepenses }}%; height: 20px; background-color:rgb(62, 38, 118); border-radius: 5px;"></div>
+    </div>
+</div>
+
+<h2>Liste des Dépenses</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Catégorie</th>
+            <th>Description</th>
+            <th>Montant</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for depense in depenses %}
+            <tr>
+                <td>{{ depense.categorie }}</td>
+                <td>{{ depense.description }}</td>
+                <td>{{ depense.montant }} MAD</td>
+                <td>{{ depense.dateDepense|date('d/m/Y') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
