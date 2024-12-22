@@ -1,0 +1,45 @@
+<style>
+ body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2f4f4f; /* Couleur de fond douce */
+        }
+.container {
+            background-color: #ffffff;
+            padding: 40px; /* Augmentation de la taille du conteneur */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+            height: 150px; /* Largeur fixe pour le conteneur */
+        }
+.btn {
+            display:flex;
+            padding: 12px 25px;
+            background-color: #00796b; /* Couleur de bouton plus professionnelle */
+            color: #fff;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+           
+        }
+        .btn:hover {
+            background-color: #004d40;
+        }
+        .center-flex-container {
+    display: flex;
+    justify-content: center; /* Centre le lien horizontalement */
+}
+
+
+</style>
+<div class="container">
+    <a href="{{ path('depense_recapitulatif_revoir') }}" class="btn center-flex-container">Voir le récapitulatif</a>
+    <br><br><br>
+    <a href="{{ path('depense_saisie') }}" style="color:#00796b">Ajouter une dépense</a>
+</div>

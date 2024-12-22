@@ -12,7 +12,7 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Couleur de fond douce */
+            background-color: #2f4f4f; /* Couleur de fond douce */
         }
         .container {
             background-color: #ffffff;
@@ -42,7 +42,7 @@
         }
         a {
             color: #00796b;
-            text-decoration: none;
+            
             margin: 0 5px;
         }
         a:hover {
@@ -50,6 +50,10 @@
         }
         .actions {
             text-align: center;
+        }
+        .right{
+            display: flex;
+            justify-content: right;
         }
     </style>
 </head>
@@ -70,9 +74,9 @@
                         <td>{{ depense.categorie }}</td>
                         <td>{{ depense.description }}</td>
                         <td class="actions">
-                            <a href="{{ path('depense_voir', {'id': depense.id}) }}">Voir plus</a>
-                            <a href="{{ path('depense_modifier', {'id': depense.id}) }}">Modifier</a>
-                            <a href="{{ path('depense_supprimer', {'id': depense.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette dépense ?')">Supprimer</a>
+                            <a href="{{ path('depense_voir', {'id': depense.id}) }}"style="background-color: hsl(217, 9.50%, 37.30%); color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Voir plus</a>
+                            <a href="{{ path('depense_modifier', {'id': depense.id}) }}"style="background-color:hsl(217, 9.50%, 37.30%); color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Modifier</a>
+                            <a href="{{ path('depense_supprimer', {'id': depense.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette dépense ?')"style="background-color:hsl(217, 9.50%, 37.30%); color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Supprimer</a>
                         </td>
                     </tr>
                 {% else %}
@@ -82,8 +86,10 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('depense_saisie') }}">Ajouter une dépense</a>
-        <a href="{{ path('depense_recapitulatif') }}">Voir le récapitulatif</a>
+        <div class="right">
+        <a href="{{ path('depense_saisie') }}" >Ajouter une dépense</a>
+        <a href="{{ path('depense_recapitulatif') }}" >Voir le récapitulatif</a>
+        </div>
     </div>
 </body>
 </html>

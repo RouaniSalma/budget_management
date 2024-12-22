@@ -1,14 +1,17 @@
 <?php
 // src/Controller/DepenseController.php
 namespace App\Controller;
-
 use App\Entity\Depense;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Utilisateur;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\DepenseRepository;
+
 
 class DepenseController extends AbstractController
 {
@@ -153,6 +156,51 @@ public function recapitulatif(EntityManagerInterface $em): Response
         'pourcentageDepenses' => $pourcentageDepenses,
     ]);
 }
+ 
+#[Route('/depenses', name: 'depense_liste_revoir')]
+public function liste(DepenseRepository $depenseRepository): Response
+{
+    $utilisateur = $this->getUser(); // Récupère l'utilisateur connecté
+    $depenses = $depenseRepository->findBy(['utilisateur' => $utilisateur]); // Récupère ses dépenses
 
+    return $this->render('depense/liste_revoir.html.twig', [
+        'depenses' => $depenses,
+    ]);
+}
+
+#[Route('/depenses/recapitulatif_revoir', name: 'depense_recapitulatif_revoir')]
+public function recapitulatif_revoir(DepenseRepository $depenseRepository, EntityManagerInterface $em): Response
+{
+    // Récupérer l'utilisateur
+    $utilisateur = $em->getRepository(Utilisateur::class)->findOneBy([], ['id' => 'DESC']);
+    
+    if (!$utilisateur) {
+        throw $this->createAccessDeniedException('Veuillez entrer votre salaire d’abord.');
+    }
+
+    // Récupérer les dépenses de l'utilisateur
+    $depenses = $em->getRepository(Depense::class)->findBy(['utilisateur' => $utilisateur]);
+
+    // Calculer le total des dépenses
+    $totalDepenses = 0;
+    foreach ($depenses as $depense) {
+        $totalDepenses += $depense->getMontant();
+    }
+
+    // Récupérer le salaire de l'utilisateur
+    $salaire = $utilisateur->getSalaire();
+    $budgetRestant = $salaire - $totalDepenses;
+
+    // Calculer le pourcentage de dépenses par rapport au salaire
+    $pourcentageDepenses = ($salaire > 0) ? ($totalDepenses / $salaire) * 100 : 0;
+
+    return $this->render('depense/recapitulatif.html.twig', [
+        'depenses' => $depenses,
+        'totalDepenses' => $totalDepenses,
+        'budgetRestant' => $budgetRestant,
+        'salaire' => $salaire,
+        'pourcentageDepenses' => $pourcentageDepenses,
+    ]);
+}
 
 }

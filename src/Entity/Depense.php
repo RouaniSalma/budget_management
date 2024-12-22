@@ -30,6 +30,9 @@ class Depense
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_depense = null;
 
+    #[ORM\Column(length: 180, nullable: true)]
+    private ?string $sessionId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Depense
     public function setDateDepense(\DateTimeInterface $date_depense): static
     {
         $this->date_depense = $date_depense;
+
+        return $this;
+    }
+
+    public function getSessionId(): ?string
+    {
+        return $this->sessionId;
+    }
+
+    public function setSessionId(?string $sessionId): static
+    {
+        $this->sessionId = $sessionId;
 
         return $this;
     }
