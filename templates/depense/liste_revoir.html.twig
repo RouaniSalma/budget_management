@@ -1,5 +1,11 @@
-<style>
- body {
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Dépenses</title>
+    <style>
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -8,7 +14,7 @@
             font-family: Arial, sans-serif;
             background-color: #2f4f4f; /* Couleur de fond douce */
         }
-.container {
+        .container {
             background-color: #ffffff;
             padding: 40px; /* Augmentation de la taille du conteneur */
             border-radius: 8px;
@@ -16,30 +22,73 @@
             text-align: center;
             width: 400px;
             height: 150px; /* Largeur fixe pour le conteneur */
+            transform: scale(2.15); /* Ajustez la valeur pour zoomer plus ou moins */ 
+            transform-origin: center;
         }
-.btn {
-            display:flex;
+        .btn {
+            display: flex;
+            align-items: center;
             padding: 12px 25px;
-            background-color: #00796b; /* Couleur de bouton plus professionnelle */
+            background-color: #D4AF37;
+            font-weight: bold; /* Couleur de bouton plus professionnelle */
             color: #fff;
             border: none;
             text-decoration: none;
             border-radius: 4px;
             cursor: pointer;
-           
         }
         .btn:hover {
             background-color: #004d40;
         }
         .center-flex-container {
+            display: flex;
+            justify-content: center; /* Centre le lien horizontalement */
+        }
+        .btn img {
+            margin-right: 8px; /* Espace entre l'image et le texte */
+        }
+        /* Style pour le bouton de retour */
+.back-button {
+    position: absolute;
+    bottom: 20px; /* Place le bouton en bas du conteneur */
+    left: 10.4%;/* Centre le bouton horizontalement */
+    transform: translateX(-50%); /* Ajuste la position pour centrer le bouton */
+    background-color:#A8E6CF; /* Couleur grise pour le bouton */
+    color: white; /* Texte blanc */
+    border: none;
+    padding: 5px 5px; /* Espacement autour du texte */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
     display: flex;
-    justify-content: center; /* Centre le lien horizontalement */
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
 }
 
-
-</style>
-<div class="container">
-    <a href="{{ path('depense_recapitulatif_revoir') }}" class="btn center-flex-container">Voir le récapitulatif</a>
-    <br><br><br>
-    <a href="{{ path('depense_saisie') }}" style="color:#00796b">Ajouter une dépense</a>
-</div>
+.back-button img {
+    width: 11px; /* Taille de l'icône de flèche */
+    height: 11px;
+}
+.back-button:hover{
+    background-color:#D4AF37;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ path('depense_recapitulatif_revoir') }}" class="btn center-flex-container">
+            <img  src="{{ asset('images/finance.png') }}" alt="Icone récapitulatif" width="50px" height="50px" style="font-size:19px;"/>
+            Voir le récapitulatif
+        </a>
+        <br><br><br>
+        <a href="{{ path('depense_saisie') }}" style="color:#00796b;font-size: 18px;">Ajouter une dépense</a>
+         <!-- Bouton de retour -->
+        <a href="{{ path('salaire_saisir') }}" class="back-button">
+           <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Retour"> <!-- Icône de flèche -->
+           
+        </a>
+    </div>
+     
+</body>
+</html>

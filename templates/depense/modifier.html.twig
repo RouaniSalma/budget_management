@@ -3,19 +3,24 @@
 /* Style for the expense modification page */
 h1 {
     font-size: 24px;
-    color: #333;
+    color: #000000;
     text-align: center;
     margin-bottom: 20px;
+}
+body {
+    background-color: #2f4f4f;
 }
 
 form {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 170px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
+    transform: scale(1.2); /* Ajustez la valeur pour zoomer plus ou moins */ 
+    transform-origin: center;
 }
 
 label {
@@ -37,37 +42,64 @@ input[type="date"] {
 }
 
 button {
-    display: block;
-    width: 100%;
+    width: auto; /* Adjust the width as needed */
     padding: 10px;
-    background-color: #00796b; /* Green color */
+    background-color: #D4AF37; /* Green color */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    display: block; /* Ensure the button is displayed as a block element */
+    margin: 0 auto; /* Center the button horizontally */
 }
 
 button:hover {
     background-color: #00796b;
 }
 
+
 a {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #00796b; /* Green color */
-    color: white;
-    text-decoration: none;
+    color: #00796b;
+    font-size: 18px;
     border-radius: 5px;
 }
 
-a:hover {
-    background-color: #00796b;
-}
+
+.back-button {
+            position: absolute;
+            bottom: 10.5px;  /* Place le bouton en bas du conteneur */
+            left: 5.8%;/* Centre le bouton horizontalement */
+            transform: translateX(-50%); /* Ajuste la position pour centrer le bouton */
+            background-color:#A8E6CF; /* Couleur grise pour le bouton */
+            color: white; /* Texte blanc */
+            border: none;
+            padding: 10px 10px; /* Espacement autour du texte */
+            border-radius: 5px; /* Coins arrondis */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+        }
+
+        .back-button img {
+            width: 16px; /* Taille de l'icône de flèche */
+            height: 16px;
+            margin-bottom: 1px;
+        }
+        .back-button:hover{
+            background-color:#D4AF37;
+        }
 </style>
-<h1>Modifier la Dépense</h1>
+
 
 <form method="POST">
+<h1>Modifier la dépense</h1>
     <label for="categorie">Catégorie :</label>
     <input type="text" id="categorie" name="categorie" value="{{ depense.categorie }}" required>
 
@@ -82,7 +114,10 @@ a:hover {
     <label for="date_depense">Date de Dépense :</label>
     <input type="date" id="date_depense" name="date_depense" value="{{ depense.dateDepense ? depense.dateDepense|date('Y-m-d') : '' }}" required>
 
-    <button type="submit">Modifier Dépense</button>
+    <button type="submit">Modifier la dépense</button>
+    <a href="{{ path('depense_liste') }}" class="back-button">
+           <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Retour"> <!-- Icône de flèche -->
+        </a>
 </form>
 
-<a href="{{ path('depense_liste') }}">Retour à la liste des dépenses</a>
+

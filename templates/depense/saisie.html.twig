@@ -21,6 +21,8 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 400px; /* Largeur fixe pour le conteneur */
+            transform: scale(1.1); /* Ajustez la valeur pour zoomer plus ou moins */ 
+            transform-origin: center;
         }
         input[type="text"],
         input[type="number"],
@@ -33,8 +35,9 @@
         }
         button {
             padding: 12px 25px;
-            background-color: #00796b; /* Couleur de bouton plus professionnelle */
+            background-color: #D4AF37; /* Couleur de bouton plus professionnelle */
             color: #fff;
+            font-weight: bold;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -51,23 +54,59 @@
         a:hover {
             text-decoration: underline;
         }
+        .back-button {
+            position: absolute;
+            bottom: 20px;  /* Place le bouton en bas du conteneur */
+            left: 12.4%;/* Centre le bouton horizontalement */
+            transform: translateX(-50%); /* Ajuste la position pour centrer le bouton */
+            background-color:#A8E6CF; /* Couleur grise pour le bouton */
+            color: white; /* Texte blanc */
+            border: none;
+            padding: 10px 10px; /* Espacement autour du texte */
+            border-radius: 5px; /* Coins arrondis */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+        }
+
+        .back-button img {
+            width: 18px; /* Taille de l'icône de flèche */
+            height: 18px;
+            margin-bottom: 1px;
+        }
+        .back-button:hover{
+            background-color:#D4AF37;
+        }
+        /* Style pour l'image */
+        .header-image {
+            width: 20%;
+            height: 20%;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Saisie des Dépenses</h1>
+        <img src="{{ asset('images/depenses.png') }}" alt="Image de Saisie des Dépenses" class="header-image">
+        <h1>Saisir vos dépenses</h1>
         <form method="POST">
-            <label for="categorie">Catégorie :</label>
+            <label for="categorie" style="color:#00796b;font-size: 18px;font-weight: bold;">Catégorie :</label>
             <input type="text" id="categorie" name="categorie" required>
-            <label for="montant">Montant :</label>
+            <label for="montant"style="color:#00796b;font-size: 18px;font-weight: bold;">Montant :</label>
             <input type="number" id="montant" name="montant" required>
-            <label for="description">Description :</label>
+            <label for="description"style="color:#00796b;font-size: 18px;font-weight: bold;">Description :</label>
             <input type="text" id="description" name="description" required>
-            <label for="date_depense">Date de Dépense :</label>
+            <label for="date_depense"style="color:#00796b;font-size: 18px;font-weight: bold;">Date de Dépense :</label>
             <input type="date" id="date_depense" name="date_depense" required>
             <button type="submit">Ajouter Dépense</button>
         </form>
-        <a href="{{ path('depense_liste') }}">Voir la liste des dépenses</a>
+        <a href="{{ path('depense_liste') }}" style="font-size: 18px;">Voir la liste des dépenses</a>
+        <a href="{{ path('depense_liste_revoir') }}" class="back-button">
+           <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Retour"> <!-- Icône de flèche -->
+        </a>
     </div>
 </body>
 </html>

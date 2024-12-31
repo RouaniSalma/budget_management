@@ -16,11 +16,23 @@
         }
         .container {
             background-color: #ffffff;
-            padding: 40px; /* Augmentation de la taille du conteneur */
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 400px; /* Largeur fixe pour le conteneur */
+            width: 400px;
+            position: relative;
+            transform: scale(1.8); /* Ajustez la valeur pour zoomer plus ou moins */ 
+            transform-origin: center;
+        }
+        .container img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2f4f4f;
         }
         input[type="number"] {
             width: 100%;
@@ -28,30 +40,85 @@
             margin: 15px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        input[type="number"]:focus {
+            border-color: #00796b;
+            box-shadow: 0 0 5px rgba(0, 121, 107, 0.5);
         }
         button {
             padding: 12px 25px;
-            background-color: #00796b; /* Couleur de bouton plus professionnelle */
+            background-color: #D4AF37; /* Couleur de bouton plus professionnelle */
             color: #fff;
+            font-weight: bold;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
         button:hover {
-            background-color: #004d40;
+            background-color: #00796b;
+            transform: scale(1.05);
         }
-        
+        button:active {
+            background-color: #005f56;
+            transform: scale(0.95);
+        }
+        a {
+            color: #00796b;
+            
+            font-size: 14px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Style pour le bouton de retour */
+.back-button {
+    position: absolute;
+    bottom: 20px; /* Place le bouton en bas du conteneur */
+    left: 10.4%;/* Centre le bouton horizontalement */
+    transform: translateX(-50%); /* Ajuste la position pour centrer le bouton */
+    background-color:#A8E6CF; /* Couleur grise pour le bouton */
+    color: white; /* Texte blanc */
+    border: none;
+    padding: 5px 5px; /* Espacement autour du texte */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+}
+
+.back-button img {
+    width: 11px; /* Taille de l'icône de flèche */
+    height: 11px;
+    margin-top: 17px;
+}
+.back-button:hover{
+    background-color:#D4AF37;
+}
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Ajout de l'image -->
+        <img src="{{ asset('images/credit.png') }}"alt="Icône Salaire">
+        
         <h1>Saisir votre Salaire</h1>
         <form method="POST">
-            <input type="number" id="salaire" name="salaire" required>
+            <input type="number" id="salaire" name="salaire" placeholder="Entrez votre salaire" required>
             <button type="submit">Confirmer</button>
         </form>
         <br>
-        <a href="{{ path('depense_liste_revoir') }}" style="color:#00796b">Voir vos dépenses récentes</a>
+        <a href="{{ path('depense_liste_revoir') }}">Voir vos dépenses récentes</a>
+
+        <!-- Bouton de retour -->
+        <a href="{{ path('homepage') }}" class="back-button">
+           <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Retour"> <!-- Icône de flèche -->
+           
+        </a>
     </div>
 </body>
 </html>

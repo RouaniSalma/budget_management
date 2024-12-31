@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<style>
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #2D3E3F;
+    color: #fff;
+}
+
+h1, h2 {
+    font-weight: bold;
+}
+
+a {
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #004D40;
+}
+
+img {
+    border-radius: 45%;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+.homepage div {
+    text-align: center;
+}
+
+.homepage header {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+<div class="homepage" style="background-color: #2D3E3F; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff;">
+    <header style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: 3.0em; margin-bottom: 10px;">Bienvenue sur notre application de <span style="color: #D4AF37;">Gestion des Dépenses</span></h1>
+        <p style="font-size: 2.1em;">Votre outil pour gérer vos finances et maîtriser votre budget.</p>
+    </header>
+    
+    <!-- Section avec icônes pour les fonctionnalités -->
+    <div style="margin-top: 50px; text-align: center;">
+        <h2 style="margin-bottom: 20px;font-size: 1.6em;">Découvrez nos fonctionnalités :</h2>
+        <div style="display: flex; justify-content: center; gap: 50px;">
+            <div>
+                <img src="{{ asset('images/icon_analysis.webp') }}" alt="Budget Icon" style="width: 130px; height: auto; margin-bottom: 10px; margin-right: 100px;">
+                <p style="margin-right: 100px;font-size: 1.2em;">Suivez vos dépenses</p>
+            </div>
+            <div>
+                <img src="{{ asset('images/icon_savings.jpg') }}" alt="Savings Icon" style="width: 130px; height: auto; margin-bottom: 10px;margin-right: 100px;margin-left: 20px;">
+                <p style="margin-right: 100px;font-size: 1.2em;">Gérez vos économies</p>
+            </div>
+            <div>
+                <img src="{{ asset('images/icon_budget.png') }}" alt="Analysis Icon" style="width: 130px; height: auto; margin-bottom: 10px;">
+                <p style="font-size: 1.2em;">Analysez vos finances</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bouton principal -->
+    <div style="margin-top: 40px;">
+        <a href="{{ path('salaire_saisir') }}" 
+           style="display: inline-block; padding: 15px 30px; background-color: #D4AF37; color: white; text-decoration: none; border-radius: 5px; font-size: 1.2em; transition: 0.3s;">
+           Commencer maintenant
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -22,6 +22,8 @@
             text-align: center;
             width: 80%; /* Largeur fixe pour le conteneur */
             max-width: 800px; /* Largeur maximale pour le conteneur */
+            transform: scale(1.2); /* Ajustez la valeur pour zoomer plus ou moins */ 
+            transform-origin: center;
         }
         table {
             width: 100%;
@@ -52,14 +54,41 @@
             text-align: center;
         }
         .right{
+            font-size: 20px;
             display: flex;
             justify-content: right;
         }
+        .back-button {
+    position: absolute;
+    bottom: 10px; /* Place le bouton en bas du conteneur */
+    left: 5.9%;/* Centre le bouton horizontalement */
+    transform: translateX(-50%); /* Ajuste la position pour centrer le bouton */
+    background-color:#A8E6CF; /* Couleur grise pour le bouton */
+    color: white; /* Texte blanc */
+    border: none;
+    padding: 10px 10px; /* Espacement autour du texte */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+
+.back-button img {
+    width: 18px; /* Taille de l'icône de flèche */
+    height: 18px;
+    margin-bottom: 4.0px;
+}
+.back-button:hover{
+    background-color:#D4AF37;
+}
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Liste des Dépenses</h1>
+        <h1>Liste de vos dépenses</h1>
         <table>
             <thead>
                 <tr>
@@ -74,9 +103,9 @@
                         <td>{{ depense.categorie }}</td>
                         <td>{{ depense.description }}</td>
                         <td class="actions">
-                            <a href="{{ path('depense_voir', {'id': depense.id}) }}"style="background-color: hsl(217, 9.50%, 37.30%); color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Voir plus</a>
-                            <a href="{{ path('depense_modifier', {'id': depense.id}) }}"style="background-color:hsl(217, 9.50%, 37.30%); color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Modifier</a>
-                            <a href="{{ path('depense_supprimer', {'id': depense.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette dépense ?')"style="background-color:hsl(217, 9.50%, 37.30%); color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Supprimer</a>
+                            <a href="{{ path('depense_voir', {'id': depense.id}) }}"style="background-color: #D4AF37; color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Voir plus</a>
+                            <a href="{{ path('depense_modifier', {'id': depense.id}) }}"style="background-color: #D4AF37; color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Modifier</a>
+                            <a href="{{ path('depense_supprimer', {'id': depense.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette dépense ?')"style="background-color: #D4AF37; color: white; padding: 5px 5px; text-decoration: none;font-weight: bold;border-radius: 5px;">Supprimer</a>
                         </td>
                     </tr>
                 {% else %}
@@ -90,6 +119,9 @@
         <a href="{{ path('depense_saisie') }}" >Ajouter une dépense</a>
         <a href="{{ path('depense_recapitulatif') }}" >Voir le récapitulatif</a>
         </div>
+        <a href="{{ path('depense_saisie') }}" class="back-button">
+           <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Retour"> <!-- Icône de flèche -->
+        </a>
     </div>
 </body>
 </html>

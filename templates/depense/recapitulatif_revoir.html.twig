@@ -1,98 +1,206 @@
-<style>
-/* Style for the expense summary page */
-h1 {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Récapitulatif des Dépenses</title>
+    <link rel="icon" href="images/icone.png"/>
+    <style>
+        /* Style for the expense summary page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Use flexbox for body */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .summary {
+            width: 80%;
+            max-width: 800px; /* Limit the maximum width */
+            background-color: #2f4f4f;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #D4AF37; /* Changed to match the theme */
+            text-align: center;
+            margin-bottom: 20px; /* Adjusted margin */
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #D4AF37; /* Dark green color */
+        }
+
+        .thank-you-message {
+            background-color: #A8E6CF; /* Soft green for a friendly feel */
+            color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px; /* Space below the message */
+            font-size: 18px; /* Increased font size for better readability */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+        }
+
+        .thank-you-message img {
+            width: 30px; /* Size of the icon */
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        .circular-progress {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(#F1C40F {{ pourcentageDepenses }}%, #f3f3f3 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px; /* Adjusted margin */
+        }
+
+        .circular-progress::before {
+            content: '{{ pourcentageDepenses | number_format(2) }}%';
+            position: absolute;
+            font-size: 24px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #D4AF37;
+            margin-top: 30px;   
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Added margin for spacing */
+        }
+
+        th, td {
+           padding :12px ; 
+           text-align :left ; 
+           border-bottom :1px solid #ddd ; 
+       }
+
+       th {
+           background-color:#00695c ; 
+           color:white ; 
+           font-weight:bold ; 
+       }
+
+       td {
+           background-color:#fff ; 
+       }
+
+       .footer {
+           text-align:center; 
+           margin-top :20px ; 
+           font-size :14px ; 
+           color :#666 ; 
+       }
+       
+       .graph-description-container {
+           display:flex ; 
+           flex-direction :column ; 
+           align-items:center ; 
+       }
+
+       /* Style pour le bouton de retour */
+/* Style pour le bouton de retour */
+.back-button {
+    position: absolute;
+    bottom: 20px; /* Place le bouton en bas du conteneur */
+    left: 30.4%;/* Centre le bouton horizontalement */
+    transform: translateX(-50%); /* Ajuste la position pour centrer le bouton */
+    background-color:#A8E6CF; /* Couleur grise pour le bouton */
+    color: white; /* Texte blanc */
+    border: none;
+    padding: 10px 10px; /* Espacement autour du texte */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
 }
 
-p {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
+.back-button img {
+    width: 25px; /* Taille de l'icône de flèche */
+    height: 25px;
 }
-
-strong {
-    color: #00695c; /* Dark green color */
+.back-button:hover{
+    background-color:#D4AF37;
 }
+    </style>
+</head>
+<body>
+    <div class="summary">
+        <!-- Bouton de retour -->
+        <a href="{{ path('depense_liste_revoir') }}" class="back-button">
+           <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Retour"> <!-- Icône de flèche -->
+           
+        </a>
 
-div {
-    margin: 20px 0;
-}
+        <h1>Récapitulatif des Dépenses</h1>
 
-div > div {
-    width: 100%;
-    background-color: #f3f3f3;
-    border-radius: 5px;
-}
+        <!-- Message de remerciement -->
+        <div class="thank-you-message">
+           Merci d'utiliser notre application ! Votre confiance nous est précieuse.
+        </div>
 
-div > div > div {
-    height: 20px;
-    background-color: rgb(33, 18, 101); /* Purple color */
-    border-radius: 5px;
-}
+        <p><strong>Salaire :</strong> <span style="color:#ffffff;">{{ salaire }} MAD</span></p>
+        <p><strong>Total des Dépenses :</strong><span style="color:#ffffff;"> {{ totalDepenses }} MAD</span></p>
+        <p><strong>Budget Restant :</strong> <span style="color:#ffffff;">{{ budgetRestant }} MAD</span></p>
 
-h2 {
-    font-size: 20px;
-    color: #333;
-    margin-top: 30px;
-}
+        <!-- Barre de progression circulaire du pourcentage des dépenses -->
+        <div class="graph-description-container">
+           <p><strong>Pourcentage des dépenses :</strong> <span style="color:#ffffff;">{{ pourcentageDepenses | number_format(2) }}%</span></p>
+           <div class="circular-progress"></div>
+       </div>
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
+       <h2>Liste des dépenses</h2>
+       <table>
+           <thead>
+               <tr>
+                   <th>Catégorie</th>
+                   <th>Description</th>
+                   <th>Montant</th>
+                   <th>Date</th>
+               </tr>
+           </thead>
+           <tbody>
+               {% for depense in depenses %}
+                   <tr>
+                       <td>{{ depense.categorie }}</td>
+                       <td>{{ depense.description }}</td>
+                       <td>{{ depense.montant }} MAD</td>
+                       <td>{{ depense.dateDepense|date('d/m/Y') }}</td>
+                   </tr>
+               {% endfor %}
+           </tbody>
+       </table>
 
-th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #00695c; /* Dark green color */
-    color: white;
-    font-weight: bold;
-}
-
-td {
-    background-color: #fff;
-}
-</style>
-<h1>Récapitulatif des Dépenses</h1>
-
-<p><strong>Salaire :</strong> {{ salaire }} MAD</p>
-<p><strong>Total des Dépenses :</strong> {{ totalDepenses }} MAD</p>
-<p><strong>Budget Restant :</strong> {{ budgetRestant }} MAD</p>
-
-<!-- Barre de progression du pourcentage des dépenses -->
-<div>
-    <p><strong>Pourcentage des Dépenses :</strong> {{ pourcentageDepenses | number_format(2) }}%</p>
-    <div style="width: 100%; background-color: #f3f3f3; border-radius: 5px;">
-        <div style="width: {{ pourcentageDepenses }}%; height: 20px; background-color:#424852; border-radius: 5px;"></div>
-    </div>
-</div>
-
-<h2>Liste des Dépenses</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Catégorie</th>
-            <th>Description</th>
-            <th>Montant</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for depense in depenses %}
-            <tr>
-                <td>{{ depense.categorie }}</td>
-                <td>{{ depense.description }}</td>
-                <td>{{ depense.montant }} MAD</td>
-                <td>{{ depense.dateDepense|date('d/m/Y') }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+       <div class="footer">
+           &copy; 2024 Mon application. Tous droits réservés.
+       </div>
+   </div>
+</body>
+</html>
